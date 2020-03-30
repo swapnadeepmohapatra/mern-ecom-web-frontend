@@ -22,8 +22,8 @@ const Base = ({
           <h4>if you got any questions, feel free to reach out</h4>
           <button className="btn btn-warning btn-lg">Contact us</button>
         </div>
-        <div className="container">
-          <span className="text-muted">My Ecommerce</span>
+        <div className="container text-center">
+          <span className="text-muted">Made by - Swapnadeep Mohapatra</span>
         </div>
       </footer>
     </div>

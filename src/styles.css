@@ -8,3 +8,10 @@ body {
   /* background: #343a40; */
   background: #f8f9fa;
 }
+
+footer {
+  position: sticky;
+  bottom: 0;
+  right: 0px;
+  left: 0px;
+}
