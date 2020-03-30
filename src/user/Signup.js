@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { signup } from "../auth/helper";
 import { Link } from "react-router-dom";
+import "../styles.css";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -9,10 +10,11 @@ const Signup = () => {
     email: "",
     password: "",
     error: "",
-    success: false
+    success: false,
+    loading: false
   });
 
-  const { name, email, password, success, error } = values;
+  const { name, email, password, success, error, loading } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -20,11 +22,16 @@ const Signup = () => {
 
   const onSubmit = event => {
     event.preventDefault();
-    setValues({ ...values, error: false });
+    setValues({ ...values, error: false, loading: true });
     signup({ name, email, password })
       .then(data => {
         if (data.error) {
-          setValues({ ...values, error: data.error, success: false });
+          setValues({
+            ...values,
+            error: data.error,
+            success: false,
+            loading: false
+          });
         } else {
           setValues({
             ...values,
@@ -32,7 +39,8 @@ const Signup = () => {
             email: "",
             password: "",
             error: "",
-            success: true
+            success: true,
+            loading: false
           });
         }
       })
@@ -115,10 +123,23 @@ const Signup = () => {
     );
   };
 
+  const loadingMessage = () => {
+    return (
+      loading && (
+        <div className="row">
+          <div className="col-md-6 offset-sm-3 text-left">
+            <div className="alert alert-info loading">Loading</div>
+          </div>
+        </div>
+      )
+    );
+  };
+
   return (
     <Base title="Signup" description="User Signup">
       {successMessage()}
       {errorMessage()}
+      {loadingMessage()}
       {signUpForm()}
     </Base>
   );
