@@ -52,7 +52,7 @@ export const signout = next => {
       .then(response => {
         console.log(response);
       })
-      .catc(error => {
+      .catch(error => {
         console.log(error);
       });
   }
