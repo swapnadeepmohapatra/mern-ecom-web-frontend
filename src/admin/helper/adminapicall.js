@@ -101,3 +101,19 @@ export const deleteProduct = (productId, userId, token) => {
       console.log(error);
     });
 };
+
+export const deleteCategory = (categoryId, userId, token) => {
+  return fetch(`${API}category/${categoryId}/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
