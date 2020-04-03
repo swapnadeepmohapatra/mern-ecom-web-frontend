@@ -18,7 +18,6 @@ const ManageProducts = () => {
 
   const preLoad = () => {
     getAllProducts().then(data => {
-      console.log(data);
       if (data.error) {
         console.log(data.error);
         setLoading(false);
@@ -55,7 +54,6 @@ const ManageProducts = () => {
   const productsList = () => {
     return (
       <div>
-        <h2 className="mb-4">All products:</h2>
         <div className="row">
           <div className="col-12 text-left">
             <h2 className="text-center text-black my-3">
