@@ -14,7 +14,13 @@ function Cart() {
         <h2>This section is to load products</h2>
         {products.map((product, index) => (
           <div key={index} className="col-4 mb-4">
-            <Card item={product} removeFromCart={true} addToCart={false} />
+            <Card
+              item={product}
+              removeFromCart={true}
+              addToCart={false}
+              setReload={setReload}
+              reload={reload}
+            />
           </div>
         ))}
       </div>
