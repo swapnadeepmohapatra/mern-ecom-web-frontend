@@ -4,12 +4,13 @@ import Base from "./Base";
 import Card from "./Card";
 import { loadCartItems } from "./helper/cartHelper";
 import StripeCheckout from "./StripeCheckout";
+import PaymentBraintree from "./PaymentBraintree";
 
 function Cart() {
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
 
-  const loadAllProductsOfCart = () => {
+  const loadAllProductsOfCart = (products) => {
     return (
       <div>
         <h2>This section is to load products</h2>
@@ -38,10 +39,19 @@ function Cart() {
       <Base title="Cart" description="Welcome to e-commerce">
         <div className="row ">
           <div className="col-6">
-            {products ? loadAllProductsOfCart(products) : <h4>No products</h4>}
+            {products && products.length > 0 ? (
+              loadAllProductsOfCart(products)
+            ) : (
+              <h4>No Items in the card</h4>
+            )}
           </div>
           <div className="col-6">
             <h4>Payment Methods</h4>
+            {/* <PaymentBraintree
+              products={products}
+              setReload={setReload}
+              reload={reload}
+            /> */}
             {products ? (
               <StripeCheckout
                 products={products}
@@ -51,8 +61,6 @@ function Cart() {
             ) : (
               <h4>No products</h4>
             )}
-
-            {/* <Paymentb products={products} setReload={setReload} /> */}
           </div>
         </div>
       </Base>

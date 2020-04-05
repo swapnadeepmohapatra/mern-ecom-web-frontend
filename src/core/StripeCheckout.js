@@ -18,7 +18,7 @@ const StripeCheckout = ({
     address: "",
   });
 
-  const token = isAuthenticated() && isAuthenticated().token;
+  const accToken = isAuthenticated() && isAuthenticated().token;
   const userId = isAuthenticated() && isAuthenticated().user._id;
 
   const getTotalAmount = () => {
@@ -44,9 +44,21 @@ const StripeCheckout = ({
       headers,
       body: JSON.stringify(body),
     })
-      .then((response) => {
-        console.log(response);
-        emptyCart();
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("RSP", res);
+        const orderData = {
+          products: products,
+          transaction_id: res.id,
+          amount: res.amount / 100,
+          user: userId,
+        };
+
+        createOrder(userId, accToken, orderData);
+        emptyCart(() => {
+          console.log("cart is empty");
+        });
+        setReload(!reload);
       })
       .catch((error) => console.log(error));
   };

@@ -12,6 +12,7 @@ import ManageCategories from "./admin/ManageCategories";
 import AddProduct from "./admin/AddProduct";
 import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
+import Orders from "./admin/Orders";
 import Cart from "./core/Cart";
 
 function Routes() {
@@ -40,7 +41,8 @@ function Routes() {
           exact
           component={UpdateProduct}
         />
-        <Route exact component={Cart} />
+        <Route path="/cart" exact component={Cart} />
+        <AdminRoute path="/admin/orders" exact component={Orders} />
       </Switch>
     </BrowserRouter>
   );

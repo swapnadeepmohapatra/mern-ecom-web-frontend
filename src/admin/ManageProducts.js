@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { isAuthenticated } from "../auth/helper";
 import { getAllProducts, deleteProduct } from "./helper/adminapicall";
+import ImageHelper from "../core/helper/ImageHelper";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -17,7 +18,7 @@ const ManageProducts = () => {
   }, []);
 
   const preLoad = () => {
-    getAllProducts().then(data => {
+    getAllProducts().then((data) => {
       if (data.error) {
         console.log(data.error);
         setLoading(false);
@@ -28,9 +29,9 @@ const ManageProducts = () => {
     });
   };
 
-  const deleteThisProduct = productId => {
+  const deleteThisProduct = (productId) => {
     setLoading(true);
-    deleteProduct(productId, user._id, token).then(data => {
+    deleteProduct(productId, user._id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
@@ -56,25 +57,35 @@ const ManageProducts = () => {
       <div>
         <div className="row">
           <div className="col-12 text-left">
+            {goBack()}
             <h2 className="text-center text-black my-3">
               Total {products.length} products
             </h2>
 
             {products.map((item, index) => {
               return (
-                <div key={index} className="row text-center mb-2 ">
-                  <div className="col-4">
-                    <h3 className="text-black text-left">{item.name}</h3>
+                <div
+                  key={index}
+                  className="row text-center mb-2 d-flex justify-content-center"
+                >
+                  <div className="col-3">
+                    <ImageHelper item={item} />
                   </div>
-                  <div className="col-4">
+                  <div className="col-3">
+                    <h3 className="text-black text-left">{item.name}</h3>
+                    <h6 className="text-black text-left">{item.descripiton}</h6>
+                  </div>
+                  <div
+                    className="col-3"
+                    style={{ display: "flex", flexDirection: "column" }}
+                  >
                     <Link
-                      className="btn btn-success"
+                      className="btn btn-success mb-5"
                       to={`/admin/product/update/${item._id}`}
                     >
                       <span className="">Update</span>
                     </Link>
-                  </div>
-                  <div className="col-4">
+
                     <button
                       onClick={() => {
                         deleteThisProduct(item._id);
@@ -84,6 +95,14 @@ const ManageProducts = () => {
                       Delete
                     </button>
                   </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      backgroundColor: "#c1c1c1",
+                      height: 2,
+                      marginTop: 10,
+                    }}
+                  ></div>
                 </div>
               );
             })}
