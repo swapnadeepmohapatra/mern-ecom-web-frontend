@@ -3,6 +3,7 @@ import "../styles.css";
 import Base from "./Base";
 import Card from "./Card";
 import { loadCartItems } from "./helper/cartHelper";
+import StripeCheckout from "./StripeCheckout";
 
 function Cart() {
   const [products, setProducts] = useState([]);
@@ -32,39 +33,25 @@ function Cart() {
     console.log(loadCartItems());
   }, [reload]);
 
-  //   if (loading) {
-  //     return (
-  //       <div
-  //         style={{
-  //           display: "flex",
-  //           justifyContent: "center",
-  //           alignItems: "center"
-  //         }}
-  //       >
-  //         <div className="spinner-grow text-primary" role="status">
-  //           <span className="sr-only">Loading...</span>
-  //         </div>
-  //         <div className="spinner-grow text-primary" role="status">
-  //           <span className="sr-only">Loading...</span>
-  //         </div>
-  //         <div className="spinner-grow text-primary" role="status">
-  //           <span className="sr-only">Loading...</span>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-
   return (
     <div>
       <Base title="Cart" description="Welcome to e-commerce">
         <div className="row ">
-          {products.length > 0 ? (
-            loadAllProductsOfCart(products)
-          ) : (
-            <h4>No products</h4>
-          )}
-
           <div className="col-6">
+            {products ? loadAllProductsOfCart(products) : <h4>No products</h4>}
+          </div>
+          <div className="col-6">
+            <h4>Payment Methods</h4>
+            {products ? (
+              <StripeCheckout
+                products={products}
+                setReload={setReload}
+                reload={reload}
+              />
+            ) : (
+              <h4>No products</h4>
+            )}
+
             {/* <Paymentb products={products} setReload={setReload} /> */}
           </div>
         </div>
