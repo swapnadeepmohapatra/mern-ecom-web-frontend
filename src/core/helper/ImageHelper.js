@@ -7,7 +7,7 @@ const ImageHelper = ({ item }) => {
     : "https://images.pexels.com/photos/3844000/pexels-photo-3844000.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
   return (
     <div>
-      <div className="rounded border border-success p-2">
+      <div className="rounded p-2">
         <img
           src={imageUrl}
           alt="photo"

@@ -9,6 +9,7 @@ function AddProduct() {
     name: "",
     descripiton: "",
     price: "",
+    subTitle: "",
     stock: "",
     photo: "",
     categories: [],
@@ -17,7 +18,7 @@ function AddProduct() {
     error: "",
     success: "",
     createdProduct: "",
-    formData: ""
+    formData: "",
   });
 
   const {
@@ -26,13 +27,14 @@ function AddProduct() {
     price,
     stock,
     photo,
+    subTitle,
     categories,
     category,
     loading,
     error,
     success,
     createdProduct,
-    formData
+    formData,
   } = values;
 
   useEffect(() => {
@@ -40,7 +42,7 @@ function AddProduct() {
   }, []);
 
   const preLoad = () => {
-    getAllCategories().then(data => {
+    getAllCategories().then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -51,12 +53,12 @@ function AddProduct() {
 
   const { user, token } = isAuthenticated();
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true, success: false });
 
     createProduct(user._id, token, formData)
-      .then(data => {
+      .then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error });
         } else {
@@ -69,15 +71,16 @@ function AddProduct() {
             photo: "",
             stock: "",
             category: "",
+            subTitle: "",
             createdProduct: data.name,
-            success: true
+            success: true,
           });
         }
       })
       .catch();
   };
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
@@ -129,6 +132,15 @@ function AddProduct() {
           className="form-control"
           placeholder="Name"
           value={name}
+        />
+      </div>
+      <div className="form-group">
+        <textarea
+          onChange={handleChange("subTitle")}
+          name="photo"
+          className="form-control"
+          placeholder="Sub Title"
+          value={subTitle}
         />
       </div>
       <div className="form-group">

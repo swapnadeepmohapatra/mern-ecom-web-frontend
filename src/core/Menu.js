@@ -5,32 +5,50 @@ import { signout, isAuthenticated } from "../auth/helper";
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {
     return {
-      color: "#000000"
+      color: "#000000",
     };
   }
   return {
-    color: "#777E8B"
+    color: "#777E8B",
   };
+};
+
+const showHome = (history) => {
+  if (!isAuthenticated()) {
+    return (
+      <li className="nav-item">
+        <Link style={currentTab(history, "/")} className="nav-link" to="/">
+          Home
+        </Link>
+      </li>
+    );
+  } else if (isAuthenticated() && isAuthenticated().user.role === 0) {
+    return (
+      <li className="nav-item">
+        <Link style={currentTab(history, "/")} className="nav-link" to="/">
+          Home
+        </Link>
+      </li>
+    );
+  }
 };
 
 const Menu = ({ history }) => {
   return (
     <div>
       <ul className="nav nav-tabs bg-light">
-        <li className="nav-item">
-          <Link style={currentTab(history, "/")} className="nav-link" to="/">
-            Home
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            style={currentTab(history, "/cart")}
-            className="nav-link"
-            to="/cart"
-          >
-            Cart
-          </Link>
-        </li>
+        {showHome(history)}
+        {isAuthenticated() && isAuthenticated().user.role === 0 && (
+          <li className="nav-item">
+            <Link
+              style={currentTab(history, "/cart")}
+              className="nav-link"
+              to="/cart"
+            >
+              Cart
+            </Link>
+          </li>
+        )}
         {isAuthenticated() && isAuthenticated().user.role === 0 && (
           <li className="nav-item">
             <Link

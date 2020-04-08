@@ -14,12 +14,16 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import Orders from "./admin/Orders";
 import Cart from "./core/Cart";
+import NewHome from "./core/NewHome";
+import ViewProduct from "./core/ViewProduct";
 
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/main" exact component={NewHome} />
+        <Route path="/product/view/:productId" exact component={ViewProduct} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
