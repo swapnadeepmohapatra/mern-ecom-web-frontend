@@ -3,6 +3,7 @@ import { getProduct } from "../admin/helper/adminapicall";
 import ReactImageMagnify from "react-image-magnify";
 import { API } from "../backend";
 import LoadImg from "./giphy.webp";
+import NavBar from "./NavBar";
 
 const ViewProduct = ({ match }) => {
   const [loading, setLoading] = useState(true);
@@ -52,6 +53,7 @@ const ViewProduct = ({ match }) => {
           alignItems: "center",
         }}
       >
+
         <div className="spinner-grow text-primary" role="status">
           <span className="sr-only">Loading...</span>
         </div>
@@ -67,7 +69,8 @@ const ViewProduct = ({ match }) => {
   return (
     <div className="container-fluid bg-white">
       <div className="jumbotron-fluid bg-white">
-        <div className="row">
+      <NavBar/>
+        <div className="row" style={{marginTop:'50px'}}>
           <div className="col-xs-12 col-sm-6">
             <ReactImageMagnify
               {...{
