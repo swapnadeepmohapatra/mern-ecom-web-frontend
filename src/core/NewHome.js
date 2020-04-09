@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../styles.css";
-import Base from "./Base";
-import Card from "./Card";
 import { getProducts } from "./helper/coreapicalls";
 import NewCard from "./NewCard";
 import { withRouter } from "react-router-dom";
 import NavBar from "./NavBar";
+import SideBar from "./SideBar";
 
 function NewHome() {
   const [products, setProducts] = useState([]);
@@ -51,19 +50,48 @@ function NewHome() {
   }
 
   return (
-    <div style={{ display: "flex" }}>
+    <div
+      style={{
+        display: "flex",
+        paddingLeft: "48px",
+        backgroundColor: "#ffffff",
+      }}
+    >
       <NavBar />
       <div
         className="row"
-        style={{ backgroundColor: "#ffffff", marginTop: "50px" }}
+        style={{
+          backgroundColor: "#ffffff",
+          marginTop: "50px",
+          paddingLeft: "1rem",
+        }}
       >
-        {products.map((item, index) => {
-          return (
-            <div key={index} className="col-3 mb-4">
-              <NewCard item={item} num={index} />
-            </div>
-          );
-        })}
+        <SideBar className="side-bar" />
+
+        <div
+          className="row"
+          style={{ marginLeft: "40px", flexDirection: "column" }}
+        >
+          <h1
+            style={{
+              fontWeight: "bolder",
+              marginTop: "5px",
+              marginLeft: "2rem",
+              fontSize: "2rem",
+            }}
+          >
+            Popular
+          </h1>
+          <div className="row" style={{ flexWrap: "wrap" }}>
+            {products.map((item, index) => {
+              return (
+                <div key={index} style={{ margin: "1rem" }}>
+                  <NewCard item={item} num={index} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ function NavBar() {
             Hello, <b>{isAuthenticated().user.name}</b>
           </span>
         </button>
-        <div class="dropdown-content" style={{}}>
+        <div className="dropdown-content">
           <a>My Account</a>
           <a>My Orders</a>
           <a>Sign out</a>
