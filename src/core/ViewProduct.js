@@ -70,7 +70,7 @@ const ViewProduct = ({ match }) => {
     <div className="container-fluid bg-white">
       <div className="jumbotron-fluid bg-white">
       <NavBar/>
-        <div className="row" style={{marginTop:'50px'}}>
+        <div className="row" style={{marginTop:'85px'}}>
           <div className="col-xs-12 col-sm-6">
             <ReactImageMagnify
               {...{

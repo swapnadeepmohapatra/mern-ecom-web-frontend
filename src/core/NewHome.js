@@ -62,7 +62,7 @@ function NewHome() {
         className="row"
         style={{
           backgroundColor: "#ffffff",
-          marginTop: "50px",
+          marginTop: "75px",
           paddingLeft: "1rem",
         }}
       >

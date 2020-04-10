@@ -17,6 +17,8 @@ import Cart from "./core/Cart";
 import NewHome from "./core/NewHome";
 import ViewProduct from "./core/ViewProduct";
 
+import NavBar from "./core/NavBar";
+
 function Routes() {
   return (
     <BrowserRouter>
