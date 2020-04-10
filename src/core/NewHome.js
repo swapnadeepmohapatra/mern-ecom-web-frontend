@@ -27,6 +27,16 @@ function NewHome() {
     loadAllProducts();
   }, []);
 
+  const renderProducts = (products) =>{
+    products.map((item, index) => {
+      return (
+        <div key={index} style={{ margin: "1rem" }}>
+          <NewCard item={item} num={index} />
+        </div>
+      );
+    })
+  }
+
   if (loading) {
     return (
       <div
@@ -82,15 +92,31 @@ function NewHome() {
           >
             Popular
           </h1>
-          <div className="row" style={{ flexWrap: "wrap" }}>
-            {products.map((item, index) => {
+          
+          <div className="col" style={{display:'flex', flexWrap: "wrap", flexDirection:'column' }}>
+          <div className="row" style={{display:'flex', flexWrap: "wrap" }}>
+            {products && products.slice(0,4).map((item, index) => {
               return (
                 <div key={index} style={{ margin: "1rem" }}>
                   <NewCard item={item} num={index} />
                 </div>
               );
-            })}
+            })}{
+              renderProducts(products)
+            }
+            </div>
+            <div className="row" style={{display:'flex', flexWrap: "wrap" }}>
+            {
+              products.length >= 4 ? products.slice(4,8).map((item, index) => {
+              return (
+                <div key={index} style={{ margin: "1rem" }}>
+                  <NewCard item={item} num={index} />
+                </div>
+              );
+            }):<h1>Lol</h1>
+            }
           </div>
+        </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles.css";
-import Base from "./Base";
+import NavBar from "./NavBar";
 import Card from "./Card";
 import { loadCartItems } from "./helper/cartHelper";
 import StripeCheckout from "./StripeCheckout";
@@ -36,8 +36,10 @@ function Cart() {
 
   return (
     <div>
-      <Base title="Cart" description="Welcome to e-commerce">
-        <div className="row ">
+    <NavBar/>
+    <div 
+        className="container-fluid  text-center" style={{marginTop:'75px'}}>
+        <div className="row">
           <div className="col-6">
             {products && products.length > 0 ? (
               loadAllProductsOfCart(products)
@@ -46,24 +48,23 @@ function Cart() {
             )}
           </div>
           <div className="col-6">
-            <h4>Payment Methods</h4>
             {/* <PaymentBraintree
               products={products}
               setReload={setReload}
               reload={reload}
             /> */}
-            {products ? (
+            {products && products.length > 0 ? (
               <StripeCheckout
                 products={products}
                 setReload={setReload}
                 reload={reload}
               />
             ) : (
-              <h4>No products</h4>
+              <h4></h4>
             )}
           </div>
         </div>
-      </Base>
+    </div>
     </div>
   );
 }

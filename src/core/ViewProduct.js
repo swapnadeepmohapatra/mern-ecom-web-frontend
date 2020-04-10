@@ -108,6 +108,7 @@ const ViewProduct = ({ match }) => {
                 __html: descripiton,
               }}
             ></p>
+            <button class="transaction add-to-cart">Add to Cart </button>
           </div>
         </div>
       </div>

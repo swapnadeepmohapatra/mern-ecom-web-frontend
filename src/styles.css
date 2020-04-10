@@ -143,3 +143,25 @@ footer {
 .header Button:focus{
     outline: none;
 }
+
+.add-to-cart{
+  height: 45px;
+  width: 200px;
+  border-radius: 10px;
+  color: #381738;
+  background-color: white;
+  font-size: 18px;
+  transition: all ease-in-out 0.5s;
+  cursor: pointer;
+  outline: none;
+  border: 0.5px solid #381738;
+}
+
+.add-to-cart:hover{
+  background-color: purple;
+  color: white;
+}
+
+.add-to-cart:focus{
+  outline:none
+}

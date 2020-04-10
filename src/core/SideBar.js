@@ -23,7 +23,7 @@ function SideBar() {
     <div style={{ display: "flex", flexDirection: "column", marginTop: "5px" }}>
       <h1 style={{ fontWeight: "bolder", fontSize: "2rem" }}>Categories</h1>
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "5px" }}>
-        <ul>
+        <ul style={{listStyleType: 'none'}}>
           {categories.map((cate, index) => {
             return (
               <li key={index}>
