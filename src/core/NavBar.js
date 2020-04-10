@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles.css";
 import { isAuthenticated } from "../auth/helper";
+import { Link, withRouter } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -12,21 +13,35 @@ function NavBar() {
         alt=""
       />
       <div
+      className="cart"
+        style={{
+          display:'inlineBlock',
+          marginLeft: "auto",
+          alignSelf:'center'
+        }}
+      >
+        <Link
+          className="nav-link"
+          to="/cart"
+          style={{color:'#000000'}}
+          >
+          <img
+          src="https://image.flaticon.com/icons/svg/626/626443.svg"
+          alt=""
+          height="20"
+          style={{marginRight:'5px', alignSelf:'center'}}
+        />
+        <span>Cart: </span>
+        <span>0</span>
+        </Link>
+      </div>
+      <div
         className="dropdown"
         style={{
           alignSelf: "center",
-          marginLeft: "auto",
+          marginLeft: "25px",
         }}
       >
-      
-    <img
-          src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png"
-          alt=""
-          height="16"
-        />
-        <span>Cart: </span>
-        <span>2</span>
-
         <button className="dropbtn">
           <img
             style={{
@@ -53,7 +68,7 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default withRouter(NavBar);
 
     // <div className="d-flex flex-sm-column justify-content-between align-items-center header">
     //   <div className="logo d-sm-none"></div>

@@ -131,3 +131,7 @@ footer {
 ul {
   list-style-type: none;
 }
+
+.cart:hover {
+  color:'#ffffff'
+}
