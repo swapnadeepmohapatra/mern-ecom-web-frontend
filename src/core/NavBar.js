@@ -17,7 +17,6 @@ function NavBar() {
 			<div
 				style={{
 					display: 'flex',
-					width: '40rem',
 					margin: 'auto',
 					fontSize: '14px',
 					fontWeight: 300,
@@ -27,7 +26,7 @@ function NavBar() {
 				}}
 			>
 				<input
-					style={{ width: '40rem', fontSize: '14px', fontWeight: 300, border: 'none' }}
+					style={{ width: '30rem', fontSize: '14px', fontWeight: 300, border: 'none' }}
 					type="text"
 					placeholder="Search for products, brands and more..."
 				/>

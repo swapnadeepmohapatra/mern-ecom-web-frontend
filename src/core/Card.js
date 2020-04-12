@@ -1,40 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import ImageHelper from './helper/ImageHelper';
-import { addItemToCart, removeItemFromCart } from './helper/cartHelper';
-import { Redirect } from 'react-router-dom';
+import { removeItemFromCart } from './helper/cartHelper';
 
-function Card({ item, addToCart = true, removeFromCart = false, setReload = (f) => f, reload = undefined }) {
-	const [redirect, setRedirect] = useState(false);
+function Card({ item, removeFromCart = false, setReload = (f) => f, reload = undefined }) {
 	const [count, setCount] = useState(item.count);
-
-	const addThisToCart = () => {
-		addItemToCart(item, () => setRedirect(true));
-	};
-
-	const showAddToCart = () => {
-		return (
-			<div className="col-12">
-				<button
-					onClick={() => {
-						addThisToCart();
-					}}
-					className="btn btn-block btn-outline-success mt-2 mb-2"
-				>
-					Add to Cart
-				</button>
-			</div>
-		);
-	};
 
 	const showRemoveFromCart = () => {
 		return (
-			<div className="col-12">
+			<div>
 				<button
 					onClick={() => {
 						removeItemFromCart(item._id);
 						setReload(!reload);
 					}}
-					className="btn btn-block btn-outline-danger mt-2 mb-2"
+					className="transaction delete-from-cart"
 				>
 					Remove from cart
 				</button>
@@ -42,26 +21,50 @@ function Card({ item, addToCart = true, removeFromCart = false, setReload = (f) 
 		);
 	};
 
-	const getARedirect = (redirect) => {
-		if (redirect) {
-			return <Redirect to="/cart" />;
-		}
-	};
-
 	return (
-		<div className="card text-black bg-white border border-info ">
-			<div className="card-header lead">{item.name}</div>
-			<div className="card-body">
-				{getARedirect(redirect)}
-				<ImageHelper item={item} />
-				<p className="lead bg-info font-weight-light text-wrap text-white">{item.descripiton}</p>
-				<p className="btn btn-success rounded  btn-sm px-4">₹ {item.price}</p>
-				<div className="row">
-					{addToCart && showAddToCart()}
-					{removeFromCart && showRemoveFromCart()}
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-10 mt-3">
+					<div class="card" style={{ backgroundColor: '#aae4ff', borderRadius: '15px', border: 'none' }}>
+						<div class="card-horizontal">
+							<div class="card-body" style={{ display: 'flex', flexDirection: 'row' }}>
+								<ImageHelper item={item} />
+								<div>
+									<h4 style={{ fontWeight: 'bolder', fontSize: '2em' }}>{item.subTitle}</h4>
+									<p
+										style={{
+											color: 'gray',
+											fontWeight: 'normal',
+											fontSize: '14px',
+											textAlign: 'start',
+										}}
+									>
+										ID: {item._id}
+									</p>
+									<br />
+									<h2 style={{ fontSize: '22px', textAlign: 'start' }}>$ {item.price}</h2>
+									<span style={{ textAlign: 'start' }}>{showRemoveFromCart()}</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		// <div style={{ display: 'flex', flexDirection: 'row', height: '200px' }}>
+		// 	<ImageHelper item={item} />
+
+		// </div>
+		// <div className="card text-black bg-white border border-info ">
+		// 	<div className="card-header lead">{item.name}</div>
+		// 	<div className="card-body">
+		// 		<ImageHelper item={item} />
+		// 		<p className="lead bg-info font-weight-light text-wrap text-white">{item.descripiton}</p>
+		// 		<p className="btn btn-success rounded  btn-sm px-4">₹ {item.price}</p>
+		// 		<div className="row">{removeFromCart && showRemoveFromCart()}</div>
+		// 	</div>
+		// </div>
 	);
 }
 

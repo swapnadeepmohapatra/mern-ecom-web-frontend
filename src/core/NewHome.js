@@ -90,7 +90,7 @@ function NewHome() {
 						Popular
 					</h1>
 
-					<div className="col" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
+					<div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
 						<div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
 							{products &&
 								products.slice(0, 4).map((item, index) => {

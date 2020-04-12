@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { getProduct } from '../admin/helper/adminapicall';
 import ReactImageMagnify from 'react-image-magnify';
+import { addItemToCart } from './helper/cartHelper';
 import { API } from '../backend';
 import LoadImg from './giphy.webp';
 import NavBar from './NavBar';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { Redirect, withRouter } from 'react-router-dom';
 
 const ViewProduct = ({ match }) => {
 	const [loading, setLoading] = useState(true);
@@ -16,12 +20,36 @@ const ViewProduct = ({ match }) => {
 		stock: '',
 		category: '',
 	});
-
+	const [item, setItem] = useState();
+	const [redirect, setRedirect] = useState(false);
 	const { _id, name, subTitle, descripiton, price, stock, category } = values;
 
 	useEffect(() => {
 		preLoad(match.params.productId);
 	}, []);
+
+	const addThisToCart = () => {
+		addItemToCart(item, () => {
+			confirmAlert({
+				title: 'Item Added to cart',
+				message: 'Do you want to continue shopping ?',
+				buttons: [
+					{
+						label: 'Go Back to Home',
+						onClick: function () {
+							setRedirect(false);
+						},
+					},
+					{
+						label: 'Go to Cart',
+						onClick: function () {
+							setRedirect(true);
+						},
+					},
+				],
+			});
+		});
+	};
 
 	const imageUrl = _id ? `${API}product/photo/${_id}` : LoadImg;
 
@@ -30,6 +58,9 @@ const ViewProduct = ({ match }) => {
 			if (data.error) {
 				setValues({ ...values, error: data.error });
 			} else {
+				setItem(data);
+				console.log(data);
+
 				setValues({
 					...values,
 					_id: data._id,
@@ -44,6 +75,13 @@ const ViewProduct = ({ match }) => {
 			}
 		});
 	};
+
+	const getARedirect = (redirect) => {
+		if (redirect) {
+			return <Redirect to="/cart" />;
+		}
+	};
+
 	if (loading) {
 		return (
 			<div
@@ -53,13 +91,13 @@ const ViewProduct = ({ match }) => {
 					alignItems: 'center',
 				}}
 			>
-				<div className="spinner-grow text-primary" role="status">
+				<div className="spinner-grow" role="status">
 					<span className="sr-only">Loading...</span>
 				</div>
-				<div className="spinner-grow text-primary" role="status">
+				<div className="spinner-grow" role="status">
 					<span className="sr-only">Loading...</span>
 				</div>
-				<div className="spinner-grow text-primary" role="status">
+				<div className="spinner-grow" role="status">
 					<span className="sr-only">Loading...</span>
 				</div>
 			</div>
@@ -69,7 +107,8 @@ const ViewProduct = ({ match }) => {
 		<div className="container-fluid bg-white">
 			<div className="jumbotron-fluid bg-white">
 				<NavBar />
-				<div className="row" style={{ marginTop: '85px' }}>
+				{getARedirect(redirect)}
+				<div className="row" style={{ marginTop: '85px', marginBottom: '50px' }}>
 					<div className="col-xs-12 col-sm-6">
 						<ReactImageMagnify
 							{...{
@@ -89,7 +128,10 @@ const ViewProduct = ({ match }) => {
 					</div>
 					<div className="col-xs-12 col-sm-6">
 						<h1 style={{ fontWeight: 'bolder', fontSize: '2em' }}>{subTitle}</h1>
+						<p style={{ color: 'gray', fontWeight: 'normal', fontSize: '14px' }}>ID: {_id}</p>
+						<br />
 						<h2 style={{ fontSize: '22px' }}>$ {price}</h2>
+
 						<h6
 							style={{
 								fontWeight: 'unset',
@@ -100,12 +142,27 @@ const ViewProduct = ({ match }) => {
 							MRP incl. of all taxes
 						</h6>
 						<br />
+						<br />
+						<br />
+						<button
+							// className="transaction add-to-cart"
+							className="button-grad"
+							onClick={() => {
+								addThisToCart();
+							}}
+						>
+							Add to Cart
+						</button>
+						<br />
+						<hr />
+						<br />
+						<h4>Product Specifications</h4>
+						<br />
 						<p
 							dangerouslySetInnerHTML={{
 								__html: descripiton,
 							}}
 						></p>
-						<button class="transaction add-to-cart">Add to Cart </button>
 					</div>
 				</div>
 			</div>
@@ -113,4 +170,4 @@ const ViewProduct = ({ match }) => {
 	);
 };
 
-export default ViewProduct;
+export default withRouter(ViewProduct);
