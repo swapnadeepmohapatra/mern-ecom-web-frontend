@@ -165,3 +165,25 @@ footer {
 .add-to-cart:focus {
 	outline: none;
 }
+.delete-from-cart {
+	height: 45px;
+	width: 200px;
+	border-radius: 10px;
+	color: #e71c23;
+	background-color: transparent;
+	font-size: 18px;
+	transition: all ease-in-out 0.5s;
+	cursor: pointer;
+	outline: none;
+	border: 0.5px solid #e71c23;
+	margin-top: 30px;
+}
+
+.delete-from-cart:hover {
+	background-color: #ff3e4d;
+	color: white;
+}
+
+.delete-from-cart:focus {
+	outline: none;
+}

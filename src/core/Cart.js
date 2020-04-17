@@ -49,10 +49,10 @@ function Cart() {
 					}}
 				>
 					<h1>Your cart is empty!</h1>
-					<Link to="/orders">Check your orders</Link>
+					<Link to="/order">Check your orders</Link>
 					<p>Add items to it now.</p>
-					<Link to="/main" className="button-grad">
-						Continue Shopping
+					<Link to="/main">
+						<button className="transaction add-to-cart">Continue Shopping</button>
 					</Link>
 				</div>
 			</div>
@@ -62,7 +62,7 @@ function Cart() {
 	return (
 		<div>
 			<NavBar />
-			<div className="container-fluid text-center" style={{ marginTop: '75px' }}>
+			<div className="container-fluid text-center" style={{ marginTop: '75px', marginBottom: '30px' }}>
 				{products && products.length > 0 ? loadAllProductsOfCart(products) : <h4>No Items in the card</h4>}
 			</div>
 		</div>

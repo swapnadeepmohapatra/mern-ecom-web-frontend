@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { Redirect, withRouter } from 'react-router-dom';
+import '../styles.css';
 
 const ViewProduct = ({ match }) => {
 	const [loading, setLoading] = useState(true);
@@ -145,8 +146,8 @@ const ViewProduct = ({ match }) => {
 						<br />
 						<br />
 						<button
-							// className="transaction add-to-cart"
-							className="button-grad"
+							className="transaction add-to-cart"
+							// className="button-grad"
 							onClick={() => {
 								addThisToCart();
 							}}
