@@ -22,15 +22,17 @@ function Card({ item, removeFromCart = false, setReload = (f) => f, reload = und
 	};
 
 	return (
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-10 mt-3">
-					<div class="card" style={{ backgroundColor: '#aae4ff', borderRadius: '15px', border: 'none' }}>
-						<div class="card-horizontal">
-							<div class="card-body" style={{ display: 'flex', flexDirection: 'row' }}>
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-10 mt-3">
+					<div className="card" style={{ backgroundColor: '#aae4ff', borderRadius: '15px', border: 'none' }}>
+						<div className="card-horizontal">
+							<div className="card-body" style={{ display: 'flex', flexDirection: 'row' }}>
 								<ImageHelper item={item} />
 								<div>
-									<h4 style={{ fontWeight: 'bolder', fontSize: '2em' }}>{item.subTitle}</h4>
+									<h4 style={{ fontWeight: 'bolder', fontSize: '2em', textAlign: 'start' }}>
+										{item.subTitle}
+									</h4>
 									<p
 										style={{
 											color: 'gray',

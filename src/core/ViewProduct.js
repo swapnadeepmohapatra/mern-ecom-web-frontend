@@ -5,8 +5,8 @@ import { addItemToCart } from './helper/cartHelper';
 import { API } from '../backend';
 import LoadImg from './giphy.webp';
 import NavBar from './NavBar';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Redirect, withRouter } from 'react-router-dom';
 import '../styles.css';
 
@@ -22,7 +22,7 @@ const ViewProduct = ({ match }) => {
 		category: '',
 	});
 	const [item, setItem] = useState();
-	const [redirect, setRedirect] = useState(false);
+	const [redirect, setRedirect] = useState('here');
 	const { _id, name, subTitle, descripiton, price, stock, category } = values;
 
 	useEffect(() => {
@@ -38,13 +38,13 @@ const ViewProduct = ({ match }) => {
 					{
 						label: 'Go Back to Home',
 						onClick: function () {
-							setRedirect(false);
+							setRedirect('home');
 						},
 					},
 					{
 						label: 'Go to Cart',
 						onClick: function () {
-							setRedirect(true);
+							setRedirect('cart');
 						},
 					},
 				],
@@ -78,8 +78,10 @@ const ViewProduct = ({ match }) => {
 	};
 
 	const getARedirect = (redirect) => {
-		if (redirect) {
+		if (redirect === 'cart') {
 			return <Redirect to="/cart" />;
+		} else if (redirect === 'home') {
+			return <Redirect to="/main" />;
 		}
 	};
 
