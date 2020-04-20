@@ -15,6 +15,7 @@ function Cart() {
 		return (
 			<div>
 				<h2>Products in the Cart</h2>
+				<StripeCheckout products={products} setReload={setReload} reload={reload} />
 				{products.map((product, index) => (
 					<div key={index}>
 						<Card
@@ -26,6 +27,7 @@ function Cart() {
 						/>
 					</div>
 				))}
+				<StripeCheckout products={products} setReload={setReload} reload={reload} />
 			</div>
 		);
 	};

@@ -45,3 +45,13 @@ export const emptyCart = (next) => {
 		next();
 	}
 };
+
+export const getCartItemsNumber = () => {
+	if (typeof window !== undefined) {
+		if (localStorage.getItem('cart')) {
+			return parseInt(JSON.parse(localStorage.getItem('cart')).length);
+		} else {
+			return 0;
+		}
+	}
+};

@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles.css';
 import { isAuthenticated } from '../auth/helper';
 import { Link, withRouter } from 'react-router-dom';
+import { getCartItemsNumber } from './helper/cartHelper';
 
 function NavBar() {
 	return (
@@ -55,7 +56,7 @@ function NavBar() {
 						style={{ marginRight: '5px', alignSelf: 'center' }}
 					/>
 					<span>Cart: </span>
-					<span>0</span>
+					<span>{getCartItemsNumber()}</span>
 				</Link>
 			</div>
 			<div
@@ -82,9 +83,15 @@ function NavBar() {
 					</span>
 				</button>
 				<div className="dropdown-content">
-					<a>My Account</a>
-					<a>My Orders</a>
-					<a>Sign out</a>
+					<Link>
+						<a>My Account</a>
+					</Link>
+					<Link to="/order">
+						<a>My Orders</a>
+					</Link>
+					<Link>
+						<a>Sign out</a>
+					</Link>
 				</div>
 			</div>
 		</div>

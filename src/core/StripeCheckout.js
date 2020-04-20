@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import StripeCheckoutButton from 'react-stripe-checkout';
 import { API, STRIPE_KEY } from '../backend';
 import { createOrder } from './helper/orderHelper';
+import '../styles.css';
 
 const StripeCheckout = ({ products, setReload = (f) => f, reload = undefined }) => {
 	const [data, setData] = useState({
@@ -69,19 +70,26 @@ const StripeCheckout = ({ products, setReload = (f) => f, reload = undefined }) 
 				billingAddress
 				shippingAddress
 			>
-				<button className="btn btn-success">Pay with Stripe</button>
+				<button className="stripeBtn">Proceed to Buy</button>
 			</StripeCheckoutButton>
 		) : (
 			<Link to="/signin">
-				<button className="btn btn-success">Signin to buy</button>
+				<button className="stripeBtn">Signin to buy</button>
 			</Link>
 		);
 	};
 
 	return (
-		<div>
-			<h3>Loading Stripe Checkout {getTotalAmount()}</h3>
-			{showStripeButton()}
+		<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+			<div className="stripeHolder">
+				<h5>
+					Subtotal ({products.length} items): <span style={{ fontSize: 14 }}>$</span>
+					{getTotalAmount()
+						.toString()
+						.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+				</h5>
+				{showStripeButton()}
+			</div>
 		</div>
 	);
 };
