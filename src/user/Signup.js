@@ -3,6 +3,7 @@ import Base from '../core/Base';
 import { signup } from '../auth/helper';
 import { Link } from 'react-router-dom';
 import '../styles.css';
+import NavBar from '../core/NavBar';
 
 const Signup = () => {
 	const [values, setValues] = useState({
@@ -84,10 +85,13 @@ const Signup = () => {
 								value={password}
 							/>
 						</div>
-						<button className="btn btn-success btn-block" onClick={onSubmit}>
+						<button className="btn btn-success btn-block" style={{ marginTop: '40px' }} onClick={onSubmit}>
 							Submit
 						</button>
 					</form>
+					<h5 style={{ marginTop: '20px', textAlign: 'center' }}>
+						<b>Have an account?</b> <Link to="/signin">Login</Link>
+					</h5>
 				</div>
 			</div>
 		);
@@ -130,12 +134,16 @@ const Signup = () => {
 	};
 
 	return (
-		<Base title="Signup" description="User Signup">
-			{successMessage()}
-			{errorMessage()}
-			{loadingMessage()}
-			{signUpForm()}
-		</Base>
+		<div>
+			<NavBar />
+			<div className="container-fluid text-center" style={{ marginTop: '90px', marginBottom: '30px' }}>
+				<h1>Signup</h1>
+				{successMessage()}
+				{errorMessage()}
+				{loadingMessage()}
+				{signUpForm()}
+			</div>
+		</div>
 	);
 };
 

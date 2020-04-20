@@ -72,7 +72,7 @@ const Menu = ({ history }) => {
 						</li>
 						<li className="nav-item">
 							<Link style={currentTab(history, '/signin')} className="nav-link" to="/signin">
-								Signin
+								Login
 							</Link>
 						</li>
 					</Fragment>
