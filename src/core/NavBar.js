@@ -7,7 +7,7 @@ import { getCartItemsNumber } from './helper/cartHelper';
 function NavBar({ history }) {
 	return (
 		<div className="header">
-			<Link style={{ alignSelf: 'center', marginLeft: '-25px' }} to="/main" className="nav-link">
+			<Link style={{ alignSelf: 'center', marginLeft: '-25px' }} to="/" className="nav-link">
 				<img
 					style={{ height: '2rem', margin: 5, alignSelf: 'center' }}
 					// src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/647px-Apple_logo_black.svg.png"

@@ -81,7 +81,7 @@ const ViewProduct = ({ match }) => {
 		if (redirect === 'cart') {
 			return <Redirect to="/cart" />;
 		} else if (redirect === 'home') {
-			return <Redirect to="/main" />;
+			return <Redirect to="/" />;
 		}
 	};
 

@@ -46,13 +46,13 @@ function NewHome() {
 					alignItems: 'center',
 				}}
 			>
-				<div className="spinner-grow text-primary" role="status">
+				<div className="spinner-grow " role="status">
 					<span className="sr-only">Loading...</span>
 				</div>
-				<div className="spinner-grow text-primary" role="status">
+				<div className="spinner-grow " role="status">
 					<span className="sr-only">Loading...</span>
 				</div>
-				<div className="spinner-grow text-primary" role="status">
+				<div className="spinner-grow " role="status">
 					<span className="sr-only">Loading...</span>
 				</div>
 			</div>

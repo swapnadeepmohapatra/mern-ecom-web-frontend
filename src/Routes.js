@@ -24,8 +24,9 @@ function Routes() {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path="/" exact component={Home} />
-				<Route path="/main" exact component={NewHome} />
+				<Route path="/" exact component={NewHome} />
+				{/* <Route path="/" exact component={Home} /> */}
+				{/* <Route path="/main" exact component={NewHome} /> */}
 				<Route path="/product/view/:productId" exact component={ViewProduct} />
 				<Route path="/signup" exact component={Signup} />
 				<Route path="/signin" exact component={Signin} />

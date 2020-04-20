@@ -53,7 +53,7 @@ function Cart() {
 					<h1>Your cart is empty!</h1>
 					<Link to="/order">Check your orders</Link>
 					<p>Add items to it now.</p>
-					<Link to="/main">
+					<Link to="/">
 						<button className="transaction add-to-cart">Continue Shopping</button>
 					</Link>
 				</div>

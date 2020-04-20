@@ -23,7 +23,7 @@ function Order() {
 				<h1>No orders!</h1>
 				<Link to="/cart">Check your cart</Link>
 				<p>Order items.</p>
-				<Link to="/main">
+				<Link to="/">
 					<button className="transaction add-to-cart">Continue Shopping</button>
 				</Link>
 			</div>
