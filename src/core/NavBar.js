@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import '../styles.css';
-import { isAuthenticated } from '../auth/helper';
+import { isAuthenticated, signout } from '../auth/helper';
 import { Link, withRouter } from 'react-router-dom';
 import { getCartItemsNumber } from './helper/cartHelper';
 
-function NavBar() {
+function NavBar({ history }) {
 	return (
 		<div className="header">
 			<Link style={{ alignSelf: 'center', marginLeft: '-25px' }} to="/main" className="nav-link">
@@ -59,41 +59,78 @@ function NavBar() {
 					<span>{getCartItemsNumber()}</span>
 				</Link>
 			</div>
-			<div
-				className="dropdown"
-				style={{
-					alignSelf: 'center',
-					marginLeft: '25px',
-				}}
-			>
-				<button className="dropbtn">
-					<img
+			{isAuthenticated() ? (
+				<div
+					className="dropdown"
+					style={{
+						alignSelf: 'center',
+						marginLeft: '25px',
+					}}
+				>
+					<button className="dropbtn">
+						<img
+							style={{
+								borderRadius: 50,
+								height: '2rem',
+								width: '2rem',
+								marginRight: '0.5em',
+							}}
+							src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+							alt="Profile Pic"
+							height="30"
+						/>
+						<span>
+							Hello, <b>{isAuthenticated().user.name}</b>
+						</span>
+					</button>
+					<div className="dropdown-content">
+						<Link>
+							<a>My Account</a>
+						</Link>
+						<Link to="/order">
+							<a>My Orders</a>
+						</Link>
+						<a
+							style={{
+								paddingTop: '20px',
+								paddingBottom: '20px',
+								paddingLeft: '30px',
+								paddingRight: '30px',
+							}}
+							onClick={() => {
+								signout(() => {
+									history.push('/');
+								});
+							}}
+						>
+							Sign out
+						</a>
+					</div>
+				</div>
+			) : (
+				<div
+					className="dropdown"
+					style={{
+						alignSelf: 'center',
+						marginRight: '0.5em',
+					}}
+				>
+					<button className="dropbtn">
+						<span>
+							Hello, <b>Login</b>
+						</span>
+					</button>
+					<div
+						className="dropdown-content"
 						style={{
-							borderRadius: 50,
-							height: '2rem',
-							width: '2rem',
 							marginRight: '0.5em',
 						}}
-						src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-						alt="Profile Pic"
-						height="30"
-					/>
-					<span>
-						Hello, <b>{isAuthenticated().user.name}</b>
-					</span>
-				</button>
-				<div className="dropdown-content">
-					<Link>
-						<a>My Account</a>
-					</Link>
-					<Link to="/order">
-						<a>My Orders</a>
-					</Link>
-					<Link>
-						<a>Sign out</a>
-					</Link>
+					>
+						<Link to="/signup">Signup</Link>
+						<Link to="/signin">Signin</Link>
+					</div>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }
