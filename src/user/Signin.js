@@ -3,11 +3,14 @@ import Base from '../core/Base';
 import { Link, Redirect } from 'react-router-dom';
 import { signin, authenticate, isAuthenticated } from '../auth/helper';
 import '../styles.css';
+import NavBar from '../core/NavBar';
 
 const Signin = () => {
 	const [values, setValues] = useState({
-		email: 'aa@bb.com',
-		password: '12345',
+		// email: 'aa@bb.com',
+		// password: '12345',
+		email: '',
+		password: '',
 		error: '',
 		didRedirect: false,
 		loading: false,
@@ -110,21 +113,28 @@ const Signin = () => {
 								className="form-control"
 							/>
 						</div>
-						<button className="btn btn-success btn-block" onClick={onSubmit}>
+						<button className="btn btn-success btn-block" style={{ marginTop: '40px' }} onClick={onSubmit}>
 							Submit
 						</button>
 					</form>
+					<h5 style={{ marginTop: '20px', textAlign: 'center' }}>
+						<b>New to this site?</b> <Link to="/signup">Signup</Link>
+					</h5>
 				</div>
 			</div>
 		);
 	};
 	return (
-		<Base title="Signin" description="User Signin">
-			{errorMessage()}
-			{loadingMessage()}
-			{signInForm()}
-			{performRedirect()}
-		</Base>
+		<div>
+			<NavBar />
+			<div className="container-fluid text-center" style={{ marginTop: '90px', marginBottom: '30px' }}>
+				<h1>Login</h1>
+				{errorMessage()}
+				{loadingMessage()}
+				{signInForm()}
+				{performRedirect()}
+			</div>
+		</div>
 	);
 };
 
