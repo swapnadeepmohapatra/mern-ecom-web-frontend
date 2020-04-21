@@ -49,20 +49,20 @@ function NewCard({ item, addToCart = true, removeFromCart = false, setReload = (
 	};
 	const getBg = (x) => {
 		console.log(x);
-
-		if (x === 0) {
-			return { backgroundColor: '#AAE4FF' };
-		}
-		if (x === 1) {
-			return { backgroundColor: '#E3E3E3' };
-		}
-		if (x === 2) {
-			return { backgroundColor: '#FFC0CB' };
-		}
-		if (x === 3) {
-			return { backgroundColor: '#F3D37A' };
-		}
-		return { backgroundColor: '#FFC0CB' };
+		return { backgroundColor: '#E3E3E3' };
+		// if (x === 0) {
+		// 	return { backgroundColor: '#AAE4FF' };
+		// }
+		// if (x === 1) {
+		// 	return { backgroundColor: '#E3E3E3' };
+		// }
+		// if (x === 2) {
+		// 	return { backgroundColor: '#FFC0CB' };
+		// }
+		// if (x === 3) {
+		// 	return { backgroundColor: '#F3D37A' };
+		// }
+		// return { backgroundColor: '#FFC0CB' };
 	};
 	return (
 		<Link to={`/product/view/${item._id}`}>

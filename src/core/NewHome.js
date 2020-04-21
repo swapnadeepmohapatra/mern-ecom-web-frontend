@@ -5,11 +5,24 @@ import NewCard from './NewCard';
 import { withRouter } from 'react-router-dom';
 import NavBar from './NavBar';
 import SideBar from './SideBar';
+import { useMediaQuery } from 'react-responsive';
+import NavBarMobile from './NavBarMobile';
 
 function NewHome() {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
+
+	const isDesktopOrLaptop = useMediaQuery({
+		query: '(min-device-width: 1224px)',
+	});
+	const isBigScreen = useMediaQuery({ query: '(min-device-width: 1824px)' });
+	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+	const isTabletOrMobileDevice = useMediaQuery({
+		query: '(max-device-width: 1224px)',
+	});
+	const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
+	const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
 
 	const loadAllProducts = () => {
 		getProducts().then((data) => {
@@ -35,6 +48,8 @@ function NewHome() {
 				</div>
 			);
 		});
+		console.log(isDesktopOrLaptop);
+		console.log(isTabletOrMobile);
 	};
 
 	if (loading) {
@@ -59,31 +74,70 @@ function NewHome() {
 		);
 	}
 
+	// if (isTabletOrMobile) {
+	// 	return (
+	// 		<div
+	// 			style={{
+	// 				display: 'flex',
+	// 				backgroundColor: '#ffffff',
+	// 			}}
+	// 		>
+	// 			<NavBar />
+	// 			<div
+	// 				style={{
+	// 					backgroundColor: '#ffffff',
+	// 					marginTop: '75px',
+	// 				}}
+	// 			>
+	// 				<div style={{ marginLeft: '10px', flexDirection: 'column' }}>
+	// 					<h1
+	// 						style={{
+	// 							fontWeight: 'bolder',
+	// 							marginTop: '5px',
+	// 							fontSize: '2rem',
+	// 						}}
+	// 					>
+	// 						Popular
+	// 					</h1>
+	// 				</div>
+
+	// 				<div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
+	// 					<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+	// 						{products &&
+	// 							products.map((item, index) => {
+	// 								return (
+	// 									<div key={index} style={{ margin: '1rem' }}>
+	// 										<NewCard item={item} num={index} />
+	// 									</div>
+	// 								);
+	// 							})}
+	// 						{renderProducts(products)}
+	// 					</div>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
+
 	return (
 		<div
 			style={{
 				display: 'flex',
-				paddingLeft: '48px',
 				backgroundColor: '#ffffff',
 			}}
 		>
 			<NavBar />
 			<div
-				className="row"
 				style={{
 					backgroundColor: '#ffffff',
 					marginTop: '75px',
-					paddingLeft: '1rem',
 				}}
 			>
-				<SideBar className="side-bar" />
-
-				<div className="row" style={{ marginLeft: '40px', flexDirection: 'column' }}>
+				<div style={{ marginLeft: '10px', flexDirection: 'column' }}>
 					<h1
 						style={{
 							fontWeight: 'bolder',
 							marginTop: '5px',
-							marginLeft: '2rem',
 							fontSize: '2rem',
 						}}
 					>
@@ -91,9 +145,9 @@ function NewHome() {
 					</h1>
 
 					<div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
-						<div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
+						<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
 							{products &&
-								products.slice(0, 4).map((item, index) => {
+								products.map((item, index) => {
 									return (
 										<div key={index} style={{ margin: '1rem' }}>
 											<NewCard item={item} num={index} />
@@ -101,19 +155,6 @@ function NewHome() {
 									);
 								})}
 							{renderProducts(products)}
-						</div>
-						<div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
-							{products.length >= 4 ? (
-								products.slice(4, 8).map((item, index) => {
-									return (
-										<div key={index} style={{ margin: '1rem' }}>
-											<NewCard item={item} num={index} />
-										</div>
-									);
-								})
-							) : (
-								<h1>Lol</h1>
-							)}
 						</div>
 					</div>
 				</div>

@@ -5,11 +5,19 @@
 .nav :hover {
 	border-radius: 0px;
 }
-
+/* html {
+	overflow-x: hidden;
+} */
 body {
 	/* background: #343a40; */
 	background: #f8f9fa;
 	font-family: 'Nunito', sans-serif;
+	/* position: relative;
+	overflow-x: hidden;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box; */
 }
 
 footer {
@@ -206,4 +214,9 @@ footer {
 	border-radius: 5px;
 	padding: 20px;
 	margin-top: 10px;
+}
+
+.mobTop {
+	justify-content: space-between;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.02), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
