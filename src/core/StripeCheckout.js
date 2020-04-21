@@ -70,11 +70,13 @@ const StripeCheckout = ({ products, setReload = (f) => f, reload = undefined }) 
 				billingAddress
 				shippingAddress
 			>
-				<button className="stripeBtn">Proceed to Buy</button>
+				{/* <button className="stripeBtn">Proceed to Buy</button> */}
+				<button className="transaction add-to-cart">Proceed to Buy</button>
 			</StripeCheckoutButton>
 		) : (
 			<Link to="/signin">
-				<button className="stripeBtn">Signin to buy</button>
+				<button className="transaction add-to-cart">Signin to buy</button>
+				{/* <button className="stripeBtn">Signin to buy</button> */}
 			</Link>
 		);
 	};

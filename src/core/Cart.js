@@ -27,7 +27,11 @@ function Cart() {
 						/>
 					</div>
 				))}
-				<StripeCheckout products={products} setReload={setReload} reload={reload} />
+				{products.length >= 4 ? (
+					<StripeCheckout products={products} setReload={setReload} reload={reload} />
+				) : (
+					<div></div>
+				)}
 			</div>
 		);
 	};
