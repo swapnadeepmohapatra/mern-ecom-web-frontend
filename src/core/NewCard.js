@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ImageHelper from './helper/ImageHelper';
 import { addItemToCart, removeItemFromCart } from './helper/cartHelper';
+import { useMediaQuery } from 'react-responsive';
 import { Redirect, Link, withRouter } from 'react-router-dom';
 
 function NewCard({ item, addToCart = true, removeFromCart = false, setReload = (f) => f, reload = undefined, num }) {
@@ -10,6 +11,8 @@ function NewCard({ item, addToCart = true, removeFromCart = false, setReload = (
 	const addThisToCart = () => {
 		addItemToCart(item, () => setRedirect(true));
 	};
+
+	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
 
 	const showAddToCart = () => {
 		return (
@@ -64,6 +67,41 @@ function NewCard({ item, addToCart = true, removeFromCart = false, setReload = (
 		// }
 		// return { backgroundColor: '#FFC0CB' };
 	};
+
+	if (isTabletOrMobile) {
+		return (
+			<Link to={`/product/view/${item._id}`}>
+				<button
+					className="productCard"
+					style={Object.assign(
+						{
+							borderWidth: 0,
+							borderRadius: 15,
+							// height: '320px',
+							// width: '210px',
+							height: '500px',
+							width: '100%',
+							textAlign: 'center',
+						},
+						getBg(num)
+					)}
+				>
+					<h1 className="productName" style={{ fontWeight: 'bolder', fontSize: 30 }}>
+						{item.name}
+					</h1>
+					<div className="card-body">
+						{getARedirect(redirect)}
+						<ImageHelper item={item} />
+						<span style={{ fontWeight: 600, fontSize: 20 }}>
+							$ {item.price}
+							<span style={{ fontWeight: 400, fontSize: 12 }}>.00</span>
+						</span>
+					</div>
+				</button>
+			</Link>
+		);
+	}
+
 	return (
 		<Link to={`/product/view/${item._id}`}>
 			<button

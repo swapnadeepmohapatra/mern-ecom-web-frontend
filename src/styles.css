@@ -68,6 +68,11 @@ footer {
 	height: '320px';
 	width: '210px';
 	background-color: '#AAE4FF';
+	transition: all, ease-in-out 0.3s;
+}
+.productCard:hover {
+	transform: scale(1.1);
+	z-index: 1;
 }
 
 .header {
