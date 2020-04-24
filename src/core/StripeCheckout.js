@@ -66,7 +66,7 @@ const StripeCheckout = ({ products, setReload = (f) => f, reload = undefined }) 
 				stripeKey={STRIPE_KEY}
 				token={makePayment}
 				amount={getTotalAmount() * 100}
-				name="Buy Gadgets"
+				name={`Buy ${products[0].name}`}
 				billingAddress
 				shippingAddress
 			>
